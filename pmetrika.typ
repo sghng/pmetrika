@@ -15,6 +15,7 @@
   set page(
     width: 176mm,
     height: 250mm,
+    margin: (x: 0.6in, y: 0.5in),
     header: context [
       #if counter(page).get().first() > 1 [
         #smallcaps[Psychomatrika Submission]
