@@ -17,6 +17,7 @@
   body,
 ) = {
   set text(font: font-serif, size: 9.75pt)
+  show strong: it => text(weight: "light", it) // FIXME: why it has to be light?
 
   set page(
     width: 176mm,
@@ -35,10 +36,26 @@
     font: font-sans,
     size: 9.5pt,
     fill: color-heading,
-    weight: "semibold",
   )
 
+  show figure: it => align(center, it)
+
+  set table(
+    // TODO: cell spanning a whole row should have no strokes
+    // TODO: rows sharing a spanned first cell should have no strokes
+    // TODO: spanned cells in header should have "padding" for strokes
+    stroke: (_, y) => (y: 0.5pt),
+    // FIXME: header spanning multiple rows should be colored correctly
+    fill: (_, y) => if y == 0 { color-header } else { color-body },
+  )
+  show table.cell: it => {
+    set text(font: font-sans, size: 7.75pt)
+    it
+  }
+
   set bibliography(title: "References", style: "apa")
+
+  // content
 
   if section != none {
     text(
@@ -57,16 +74,15 @@
       size: 16pt,
       font: font-sans,
       fill: color-heading,
-      weight: "semibold",
-    )[#title]
+    )[*#title*]
   }
 
   if abstract != none {
-    block(fill: color-abstract, inset: 8.5pt)[#text(size: 9pt)[
-      #text(font: font-sans, tracking: -0.02pt, weight: "semibold")[Abstract]
+    block(fill: color-abstract, inset: 8.5pt)[
+      #text(font: font-sans, tracking: -0.02pt)[*Abstract*]
 
-      [#abstract]
-    ]]
+      #text(size: 9pt)[#abstract]
+    ]
   }
 
   if keywords != none {
