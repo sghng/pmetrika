@@ -36,9 +36,11 @@
     font: font-sans,
     size: 9.5pt,
     fill: color-heading,
+    weight: "semibold",
   )
+  show heading: set block(below: 1em)
+  show heading.where(level: 2): set text(style: "italic")
 
-  show figure: it => align(center, it)
 
   set table(
     // TODO: cell spanning a whole row should have no strokes
