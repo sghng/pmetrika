@@ -14,6 +14,7 @@
   section: none,
   abstract: none,
   keywords: none,
+  bib: none,
   body,
 ) = {
   set text(font: font-serif, size: 9.75pt)
@@ -63,6 +64,10 @@
   ])
 
   set bibliography(title: "References", style: "apa")
+  show bibliography: set text(size: 8pt)
+
+  show link: set text(fill: color-link)
+
 
   // content
 
@@ -102,4 +107,6 @@
   }
 
   body
+
+  if bib != none { bibliography(bib) }
 }
