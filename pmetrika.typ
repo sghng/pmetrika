@@ -92,18 +92,17 @@
   }
 
   if abstract != none {
-    block(fill: color-abstract, inset: 8.5pt)[
-      #text(font: font-sans, tracking: -0.02pt)[*Abstract*]
+    block(fill: color-abstract, inset: 9pt)[
+      #text(size: 9pt)[
+        #text(font: font-sans, tracking: -0.02pt)[*Abstract*]
 
-      #text(size: 9pt)[#abstract]
+        #abstract
+      ]
     ]
   }
 
   if keywords != none {
-    text(size: 8pt)[
-      #text(tracking: -0.17pt)[*Keywords:*]
-      #keywords
-    ]
+    text(size: 8pt)[#text(tracking: -0.17pt)[*Keywords:*] #keywords]
   }
 
   body
