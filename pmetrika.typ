@@ -55,6 +55,13 @@
     it
   }
 
+  show figure.where(kind: table): set figure.caption(position: top)
+  show figure.caption: it => align(left, text(font: font-sans, size: 7.75pt)[
+    *#it.supplement #context it.counter.display(it.numbering).*
+    #sym.space
+    #it.body
+  ])
+
   set bibliography(title: "References", style: "apa")
 
   // content
