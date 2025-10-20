@@ -8,6 +8,7 @@
 #let color-doi = rgb("#337BCA") // doi in bottom left of pages
 #let font-sans = "Source Sans Pro"
 #let font-serif = "Minion Pro"
+#let stroke-table = stroke(0.5pt)
 
 #let pmetrika(
   title: none,
@@ -55,6 +56,7 @@
     set text(font: font-sans, size: 7.75pt)
     it
   }
+  set table.hline(stroke: stroke-table)
 
   show figure.where(kind: table): set figure.caption(position: top)
   show figure.caption: it => align(left, text(font: font-sans, size: 7.75pt)[
