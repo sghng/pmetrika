@@ -62,11 +62,15 @@
   set table.hline(stroke: stroke-table)
 
   show figure.where(kind: table): set figure.caption(position: top)
-  show figure.caption: it => align(left, text(font: font-sans, size: 7.75pt)[
-    *#it.supplement #context it.counter.display(it.numbering).*
-    #sym.space
-    #it.body
-  ])
+  show figure.caption: it => {
+    set align(left)
+    set text(font: font-sans, size: 7.75pt)
+    [
+      *#it.supplement #context it.counter.display(it.numbering).*
+      #sym.space
+      #it.body
+    ]
+  }
 
   // if a term list has only one term and it's called Note, it will be treated
   // as a figure note
@@ -93,37 +97,31 @@
   // content
 
   if section != none {
-    text(
-      size: 8.5pt,
-      font: font-sans,
-      tracking: 1.1pt,
-      fill: color-heading,
-      upper(section),
-    )
+    set text(size: 8.5pt, font: font-sans, tracking: 1.1pt, fill: color-heading)
+    upper(section)
     parbreak()
   }
 
 
   if title != none {
-    text(
-      size: 16pt,
-      font: font-sans,
-      fill: color-heading,
-    )[*#title*]
+    set text(size: 16pt, font: font-sans, fill: color-heading)
+    [*#title*]
   }
 
   if abstract != none {
+    set text(size: 9pt)
     block(fill: color-abstract, inset: 9pt)[
-      #text(size: 9pt)[
-        #text(font: font-sans, tracking: -0.02pt)[*Abstract*]
-
-        #abstract
-      ]
+      #text(font: font-sans, tracking: -0.02pt)[*Abstract*]
+      #parbreak()
+      #abstract
     ]
   }
 
   if keywords != none {
-    text(size: 8pt)[#text(tracking: -0.17pt)[*Keywords:*] #keywords]
+    set text(size: 8pt)
+    text(tracking: -0.17pt)[*Keywords:*]
+    sym.space
+    keywords
   }
 
   body
