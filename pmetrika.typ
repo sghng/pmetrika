@@ -8,6 +8,7 @@
 #let color-doi = rgb("#337BCA") // doi in bottom left of pages
 #let font-sans = "Source Sans Pro"
 #let font-serif = "Minion Pro"
+#let font-mono = "Source Code Pro"
 #let stroke-table = stroke(0.5pt)
 
 #let pmetrika(
@@ -19,6 +20,8 @@
   body,
 ) = {
   set text(font: font-serif, size: 9.75pt)
+  // FIXME: mono font too light, setting weight doesn't work
+  show raw: set text(font: font-mono)
   show strong: it => text(weight: "light", it) // FIXME: why it has to be light?
 
   set page(
