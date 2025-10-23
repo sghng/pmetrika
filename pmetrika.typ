@@ -68,6 +68,22 @@
     #it.body
   ])
 
+  // if a term list has only one term and it's called Note, it will be treated
+  // as a figure note
+  // TODO: only if the term list is after a figure
+  // TODO: make notes float with figure
+  show terms: it => {
+    let terms = it.children
+    if terms.len() == 1 {
+      let it = terms.first()
+      if it.term.at("text", default: none) == "Note" {
+        set text(font: font-sans, size: 6.75pt)
+        return [#emph(it.term): #it.description]
+      }
+    }
+    it
+  }
+
   set bibliography(title: "References", style: "apa")
   show bibliography: set text(size: 8pt)
 
