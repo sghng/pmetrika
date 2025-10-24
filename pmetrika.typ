@@ -53,18 +53,27 @@
     // TODO: spanned cells in header should have "padding" for strokes
     stroke: (_, y) => (y: 0.5pt),
     // FIXME: header spanning multiple rows should be colored correctly
-    fill: (_, y) => if y == 0 { color-header } else { color-body },
+    // fill: color-body,
   )
   show table.cell: it => {
     set text(font: font-sans, size: 7.75pt)
     it
   }
+  // HACK: work around for header fill, only works in v0.14.0
+  show table: it => {
+    set table.cell(fill: color-body)
+    it
+  }
+  show table.header: it => {
+    set table.cell(fill: color-header)
+    it
+  }
   set table.hline(stroke: stroke-table)
 
+  show figure: set text(font: font-sans, size: 7.75pt)
   show figure.where(kind: table): set figure.caption(position: top)
   show figure.caption: it => {
     set align(left)
-    set text(font: font-sans, size: 7.75pt)
     [
       *#it.supplement #context it.counter.display(it.numbering).*
       #sym.space
