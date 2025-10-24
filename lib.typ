@@ -1,4 +1,3 @@
-// definitions
 // TODO: obtain actual colors programmtically
 #let color-heading = rgb("#4086B1")
 #let color-abstract = rgb("#E8EEF3")  // abstract bg
@@ -11,16 +10,15 @@
 #let font-mono = "Source Code Pro"
 #let stroke-table = stroke(0.5pt)
 
-#let pmetrika(
+#let conf(
   title: none,
   section: none,
   abstract: none,
   keywords: none,
   bib: none,
-  body,
+  doc,
 ) = {
   set text(font: font-serif, size: 9.75pt)
-  // FIXME: mono font too light, setting weight doesn't work
   show raw: set text(font: font-mono)
   show strong: it => text(weight: "light", it) // FIXME: why it has to be light?
 
@@ -130,6 +128,7 @@
     ]
   }
 
+  // TODO: keywords should be an array
   if keywords != none {
     set text(size: 8pt)
     text(tracking: -0.17pt)[*Keywords:*]
@@ -137,7 +136,9 @@
     keywords
   }
 
-  body
+  doc
 
   if bib != none { bibliography(bib) }
+
+  // TODO: appendices support
 }
