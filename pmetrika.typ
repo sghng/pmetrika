@@ -45,6 +45,7 @@
   )
   show heading: set block(below: 1em)
   show heading.where(level: 2): set text(style: "italic")
+  show heading.where(level: 3): set text(style: "italic", weight: "regular")
 
 
   set table(
