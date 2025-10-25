@@ -44,6 +44,9 @@ most LaTeX packages.)
 - The table header color currently only applies to the first row instead of all
   cells wrapped in `table.header`. You will need to import `color-header`
   manually for some advanced coloring.
+- Caption note via `/ Note: ...` doesn't stick with the figure when
+  `placement: auto` is set. A workaround for this is described in the
+  accompanied template file.
 
 ## Support
 
