@@ -39,6 +39,12 @@ text(fill: color-heading)[A sentence with the color of a heading!]
 When in doubt, read `lib.typ`, it's very straightforward! (Much more so than
 most LaTeX packages.)
 
+## Known Issues
+
+- The table header color currently only applies to the first row instead of all
+  cells wrapped in `table.header`. You will need to import `color-header`
+  manually for some advanced coloring.
+
 ## Support
 
 Should you have any questions, feel free to start a discussion. You're also
