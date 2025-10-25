@@ -9,13 +9,13 @@
 #let font-serif = "Minion Pro"
 #let font-mono = "Source Code Pro"
 #let stroke-table = stroke(0.5pt)
+#let state-after-bib = state("after-bib", false)
 
 #let conf(
   title: none,
   section: none,
   abstract: none,
   keywords: none,
-  bib: none,
   doc,
 ) = {
   set text(font: font-serif, size: 9.75pt)
@@ -34,17 +34,31 @@
     ],
   )
 
-  set heading(numbering: "1.")
+  set bibliography(title: "References", style: "apa")
+  show bibliography: it => {
+    set text(size: 8pt)
+    it
+    // headings after bib are treated as appendices
+    state-after-bib.update(true)
+    counter(heading).update(0)
+  }
+
   show heading: set text(
     font: font-sans,
     size: 9.5pt,
     fill: color-heading,
     weight: "semibold",
   )
-  show heading: set block(below: 1em)
+  show heading: set block(below: 4pt)
   show heading.where(level: 2): set text(style: "italic")
   show heading.where(level: 3): set text(style: "italic", weight: "regular")
-
+  set heading(numbering: (..nums) => {
+    if state-after-bib.get() {
+      [Appendix #numbering("A.1.", ..nums)]
+    } else {
+      numbering("1.", ..nums)
+    }
+  })
 
   set table(
     // TODO: cell spanning a whole row should have no strokes
@@ -99,9 +113,6 @@
     it
   }
 
-  set bibliography(title: "References", style: "apa")
-  show bibliography: set text(size: 8pt)
-
   show link: set text(fill: color-link)
 
 
@@ -112,7 +123,6 @@
     upper(section)
     parbreak()
   }
-
 
   if title != none {
     set text(size: 16pt, font: font-sans, fill: color-heading)
@@ -137,8 +147,4 @@
   }
 
   doc
-
-  if bib != none { bibliography(bib) }
-
-  // TODO: appendices support
 }
