@@ -10,6 +10,7 @@
 #let font-mono = "Source Code Pro"
 #let stroke-table = stroke(0.5pt)
 #let state-after-bib = state("after-bib", false)
+#let state-in-abstract = state("in-abstract", false)
 
 #let conf(
   title: none,
@@ -33,6 +34,29 @@
       ]
     ],
   )
+
+  // NOTE: all sections titled "Abstract" will be styled as abstract
+  let abstract = state("abstract", ())
+  show heading.where(level: 1): it => {
+    if it.body == [Abstract] {
+      state-in-abstract.update(true)
+      abstract.update(x => x + (it,))
+      return
+    } else {
+      if state-in-abstract.get() {
+        state-in-abstract.update(false)
+        counter(heading).update(1)
+        block(fill: blue, abstract.get().join())
+        it
+        return
+      } else { it }
+    }
+  }
+  show par: it => context {
+    if state-in-abstract.get() {
+      abstract.update(x => x + (it,)) // collect paragraphs in abstract
+    } else { it }
+  }
 
   set bibliography(title: "References", style: "apa")
   show bibliography: it => {
@@ -127,15 +151,6 @@
   if title != none {
     set text(size: 16pt, font: font-sans, fill: color-heading)
     [*#title*]
-  }
-
-  if abstract != none {
-    set text(size: 9pt)
-    block(fill: color-abstract, inset: 9pt)[
-      #text(font: font-sans, tracking: -0.02pt)[*Abstract*]
-      #parbreak()
-      #abstract
-    ]
   }
 
   if keywords != none {
