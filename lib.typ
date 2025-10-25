@@ -138,12 +138,11 @@
     ]
   }
 
-  // TODO: keywords should be an array
   if keywords != none {
     set text(size: 8pt)
     text(tracking: -0.17pt)[*Keywords:*]
     sym.space
-    keywords
+    keywords.join("; ")
   }
 
   doc
