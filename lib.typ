@@ -22,17 +22,22 @@
   show raw: set text(font: font-mono)
   show strong: it => text(weight: "light", it) // FIXME: why it has to be light?
 
-  set page(
-    width: 176mm,
-    height: 250mm,
-    margin: (x: 0.6in, y: 0.5in),
-    header: context [
-      #if counter(page).get().first() > 1 [
-        _Psychometrika_ Submission
-        #h(1fr) #counter(page).display()
-      ]
-    ],
-  )
+  // NOTE: workaround for HTML export, which doesn't allow set page()
+  // see https://github.com/typst/typst/issues/6238#issuecomment-2849229403
+  show: it => context {
+    set page(
+      width: 176mm,
+      height: 250mm,
+      margin: (x: 0.6in, y: 0.5in),
+      header: context [
+        #if counter(page).get().first() > 1 [
+          _Psychometrika_
+          #h(1fr) #counter(page).display()
+        ]
+      ],
+    ) if target() == "paged"
+    it
+  }
 
   set bibliography(title: "References", style: "apa")
   show bibliography: it => {
