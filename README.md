@@ -1,7 +1,7 @@
 # A Typst Template for _Psychometrika_
 
 Elegant, ergonomic, satisfying, reproducible manuscript preparation for
-[_Psychometrika_](https://www.psychometricsociety.org/psychometrika), powered by
+[_Psychometrika_](https://cambridge.org/core/journals/psychometrika), powered by
 [Typst](https://typst.app/home).
 
 ## Usage
