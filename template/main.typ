@@ -3,7 +3,7 @@
 #show: conf.with(
   // These arguments are optional, but you likely need all of them in a paper.
   title: [A Typst Template for _Psychometrika_],
-  abstract: lorem(20),
+  abstract: lorem(50),
   section: "application and case studies - original",
   keywords: ("Typst", [_Psychometrika_], "typesetting"),
 )
@@ -11,6 +11,8 @@
 = Start Writing as You Normally Would!
 
 And they will be styled by the template automatically.
+
+#lorem(50)
 
 == Headings Are in Psychometrika Style
 
@@ -20,6 +22,7 @@ And they will be styled by the template automatically.
   auto,
   float: true,
   block(breakable: false)[
+    #align(left, lorem(20))
     #figure(
       table(
         columns: 5,
