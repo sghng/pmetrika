@@ -116,7 +116,6 @@
 
   show link: set text(fill: color-link)
 
-
   // content
 
   if section != none {
