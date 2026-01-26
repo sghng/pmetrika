@@ -16,6 +16,7 @@ keywords = [
 ]
 disciplines = ["psychology", "mathematics"]
 categories = ["paper"]
+exclude = ["justfile"]
 
 [template]
 path = "template"
