@@ -16,6 +16,7 @@
   section: none,
   abstract: none,
   keywords: none,
+  draft: false,
   doc,
 ) = {
   set text(font: font-serif, size: 9.75pt)
@@ -118,7 +119,7 @@
 
   // content
 
-  if section != none {
+  if section != none and not draft {
     set text(size: 8.5pt, font: font-sans, tracking: 1.1pt, fill: color-heading)
     upper(section)
     parbreak()
@@ -131,7 +132,7 @@
 
   if abstract != none {
     set text(size: 9pt)
-    block(fill: color-abstract, inset: 9pt)[
+    block(fill: if not draft { color-abstract }, inset: 9pt)[
       #text(font: font-sans, tracking: -0.02pt)[*Abstract*]
       #parbreak()
       #abstract

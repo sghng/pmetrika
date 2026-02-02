@@ -21,6 +21,9 @@ normally do!
 = Your First Section
 ```
 
+When `draft` parameter is set to `true`, your project will be compiled in
+"draft" mode. The section name and some other styling will be disabled.
+
 ## Advanced Usage
 
 You may also import and reuse some of the definitions, such as:
